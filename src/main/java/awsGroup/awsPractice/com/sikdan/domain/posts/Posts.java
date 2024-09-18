@@ -1,5 +1,6 @@
 package awsGroup.awsPractice.com.sikdan.domain.posts;
 
+import awsGroup.awsPractice.com.sikdan.webController.dto.PostsUpdateRequestDto;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -32,5 +33,11 @@ public class Posts { //게시판
         this.title = title;
         this.content = content;
         this.author = author;
+    }
+
+    public void update(PostsUpdateRequestDto requestDto) {
+        this.title = requestDto.getTitle();
+        this.content = requestDto.getContent();
+
     }
 }

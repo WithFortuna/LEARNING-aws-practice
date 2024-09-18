@@ -3,10 +3,11 @@ package awsGroup.awsPractice.com.sikdan.domain.posts;
 import awsGroup.awsPractice.com.sikdan.webController.dto.PostsSaveRequestDto;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
 
+import javax.swing.text.html.Option;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class PostsRepository {
@@ -14,9 +15,20 @@ public class PostsRepository {
     private EntityManager em;
 
 
-    public void save(Posts posts) {
+    public Long save(Posts posts) {
         em.persist(posts);
+        return posts.getId();
+    }
 
+    public Long save(PostsSaveRequestDto requestDto) {
+        Posts posts = requestDto.toEntity();
+        em.persist(posts);
+        return posts.getId();
+    }
+
+    public Optional<Posts> findByOptionalId(Long id) {
+        Posts findPosts = em.find(Posts.class, id);
+        return Optional.ofNullable(findPosts);
     }
 
     public Posts findOne(Long id) {
@@ -33,9 +45,7 @@ public class PostsRepository {
         em.createQuery("delete from Posts").executeUpdate(); //delete JPQL이라서 executeUpdate()필요
     }
 
-    public Long save(PostsSaveRequestDto requestDto) {
-        Posts posts = requestDto.toEntity();
-        em.persist(posts);
-        return posts.getId();
+    public void flush() {
+        em.flush();
     }
 }
