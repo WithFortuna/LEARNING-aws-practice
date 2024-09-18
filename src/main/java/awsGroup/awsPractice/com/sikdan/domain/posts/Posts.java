@@ -1,5 +1,6 @@
 package awsGroup.awsPractice.com.sikdan.domain.posts;
 
+import awsGroup.awsPractice.com.sikdan.domain.BaseTimeEntity;
 import awsGroup.awsPractice.com.sikdan.webController.dto.PostsUpdateRequestDto;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,10 +15,10 @@ import lombok.ToString;
 
 @Getter
 @ToString
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = true)
 @Entity
 
-public class Posts { //게시판
+public class Posts extends BaseTimeEntity { //게시판
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

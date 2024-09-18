@@ -2,6 +2,7 @@ package awsGroup.awsPractice.com.sikdan.service;
 
 import awsGroup.awsPractice.com.sikdan.domain.posts.Posts;
 import awsGroup.awsPractice.com.sikdan.domain.posts.PostsRepository;
+import awsGroup.awsPractice.com.sikdan.webController.dto.PostsListResponseDto;
 import awsGroup.awsPractice.com.sikdan.webController.dto.PostsResponseDto;
 import awsGroup.awsPractice.com.sikdan.webController.dto.PostsSaveRequestDto;
 import awsGroup.awsPractice.com.sikdan.webController.dto.PostsUpdateRequestDto;
@@ -10,7 +11,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -30,12 +33,21 @@ public class PostsService {
     }
 
     //조회
+    @Transactional(readOnly = true) //조회 속도 개선
     public PostsResponseDto findById(Long id) {
 
         Optional<Posts> optionalPosts = postsRepository.findByOptionalId(id);
         Posts findPosts = optionalPosts.orElseThrow(() -> new IllegalArgumentException("해당 게시글 없음, id: " + id));
 
         return new PostsResponseDto(findPosts);
+    }
+
+    @Transactional(readOnly = true) //조회 속도 개선
+
+    public List<PostsListResponseDto> findAll() {
+        return postsRepository.findAll().stream()
+                .map(PostsListResponseDto::new)
+                .collect(Collectors.toList());
     }
 
     //수정

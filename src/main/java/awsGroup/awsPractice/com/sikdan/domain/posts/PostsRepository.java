@@ -3,6 +3,7 @@ package awsGroup.awsPractice.com.sikdan.domain.posts;
 import awsGroup.awsPractice.com.sikdan.webController.dto.PostsSaveRequestDto;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import javax.swing.text.html.Option;

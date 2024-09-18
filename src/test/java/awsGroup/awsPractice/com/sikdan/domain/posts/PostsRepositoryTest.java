@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -38,6 +41,29 @@ class PostsRepositoryTest {
         Posts findPost = postsRepository.findOne(post.getId());
         //then
         org.assertj.core.api.Assertions.assertThat(findPost).isEqualTo(post);
+    }
+
+    @Test
+    public void 베이스엔티티_등록() {
+        //given
+        LocalDateTime now = LocalDateTime.now();
+        postsRepository.save(Posts.builder()
+                .title("title")
+                .content("content")
+                .author("olaf")
+                .build()
+        );
+
+        //when
+        List<Posts> posts = postsRepository.findAll();
+        Posts post = posts.get(0);
+        //then
+        System.out.println("====================================" +
+                "\nnow:"+now);
+        System.out.println("createDate: "+ post.getCreatedDate() );
+        System.out.println("modifiedDate: "+ post.getModifiedDate() );
+
+        org.assertj.core.api.Assertions.assertThat(post.getCreatedDate()).isBefore(now);
     }
 
 }
