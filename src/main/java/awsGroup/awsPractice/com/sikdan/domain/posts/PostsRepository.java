@@ -49,4 +49,9 @@ public class PostsRepository {
     public void flush() {
         em.flush();
     }
+
+    public void delete(Posts posts) {
+        em.find(Posts.class, posts.getId());
+        em.remove(posts); //엔티티를 영속성컨텍스트에 올려놓고 삭제해야함
+    }
 }

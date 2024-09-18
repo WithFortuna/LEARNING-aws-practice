@@ -66,6 +66,13 @@ public class PostsService {
 
         return id;
     }
-    //수정
+
     //삭제
+    @Transactional
+    public void delete(Long id) {
+        Optional<Posts> optionalPosts = postsRepository.findByOptionalId(id);
+        Posts posts = optionalPosts.orElseThrow(() -> new IllegalArgumentException("해당게시글 없음 id: " + id));
+
+        postsRepository.delete(posts);
+    }
 }
