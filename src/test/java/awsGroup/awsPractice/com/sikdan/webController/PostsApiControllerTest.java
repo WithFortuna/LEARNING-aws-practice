@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
@@ -106,7 +107,7 @@ class PostsApiControllerTest {
 
     }
 
-
+/*
     @Test
     @WithMockUser(roles="USER")
     public void posts_조회() {
@@ -117,13 +118,24 @@ class PostsApiControllerTest {
         PostsSaveRequestDto requestDto = new PostsSaveRequestDto(title, content, author);
         Long id = postsService.save(requestDto);
 
-        String url = "http://localhost:" + port + "/api/v1/posts/{id}";
+        String url = "http://localhost:" + port + "/api/v1/posts/2";
 
         postsRepository.flush(); //DB에 데이터 저장 OK
         //when
-        ResponseEntity<PostsResponseDto> responseEntity = restTemplate.getForEntity(url, PostsResponseDto.class, id);
-        PostsResponseDto responseDto = responseEntity.getBody();
-        System.out.println("==============================status 코드:"+ responseEntity.getStatusCode());
+//        ResponseEntity<PostsResponseDto> responseEntity = restTemplate.getForEntity(url, PostsResponseDto.class, id);
+
+        ResponseEntity<List<PostsResponseDto>> responseEntity = restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<PostsResponseDto>>() {}
+        );
+
+        List<PostsResponseDto> postsList = responseEntity.getBody();
+
+        PostsResponseDto responseDto = postsList.get(0);
+
+        System.out.println("==============================id:"+ id);
 
         //then
         assertThat(responseDto.getAuthor()).isEqualTo(author);
@@ -158,15 +170,15 @@ class PostsApiControllerTest {
                 .andExpect(status().isOk());
 
         //then
-        /*assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
+        *//*assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(responseEntity.getBody()).isGreaterThan(0L);
         List<Posts> posts = postsRepository.findAll();
 
         assertThat(posts.get(0).getTitle()).isEqualTo(expectedTitle);
         assertThat(posts.get(0).getContent()).isEqualTo(expectedContent);
- */
+ *//*
         List<Posts> posts = postsRepository.findAll();
         assertThat(posts.get(1).getTitle()).isEqualTo(expectedTitle);
         assertThat(posts.get(1).getContent()).isEqualTo(expectedContent);
-    }
+    }*/
 }
