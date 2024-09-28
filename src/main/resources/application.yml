@@ -5,7 +5,8 @@ spring:
 #      username: sa
 #      password:
 #      driver-class-name: org.h2.Driver
-    url: jdbc:h2:file:/root/awsPractice
+#    url: jdbc:h2:file:/root/awsPractice
+    url: jdbc:h2:tcp://localhost/~/awsPractice
     username: sa
     password:
     driver-class-name: org.h2.Driver
