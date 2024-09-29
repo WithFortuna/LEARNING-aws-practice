@@ -25,11 +25,9 @@ spring:
     active: oauth, real
   config:
     import:
-      #- optional:file:/root/app/application-real-db.properties
-      #- optional:file:/root/app/application-oauth.properties
+      - file:/root/app/application-real-db.properties
+      - file:/root/app/application-oauth.properties
       - application-real.properties
-      - application-real-db.properties
-      - application-oauth.properties
   session:
     store-type: jdbc
     jdbc:
