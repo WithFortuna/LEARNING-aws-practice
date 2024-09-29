@@ -1,5 +1,6 @@
 HELP.md
 application-oauth.properties
+application-real-db.properties
 .gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar
