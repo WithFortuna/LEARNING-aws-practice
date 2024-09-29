@@ -5,6 +5,7 @@ jdk:
 branches: #해당 브랜치에 push되면 CI실행
   only:
     - master
+    - main
 
 #Travis CI서버 홈
 cache:
