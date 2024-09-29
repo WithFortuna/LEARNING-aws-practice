@@ -1,0 +1,20 @@
+language: java
+jdk:
+  - openjdk17
+
+branches: #해당 브랜치에 push되면 CI실행
+  only:
+    - master
+
+#Travis CI서버 홈
+cache:
+  directories:
+    - '$HOME/.m2/repository'
+    - '$HOME/.gradle'
+script: "./gradlew clean build"
+
+#CI 실행 완료 시 메일로 알람
+notifications:
+  email:
+    recipients:
+      - rmsghchl0@gmail.com
