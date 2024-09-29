@@ -48,15 +48,15 @@ server:
       charset: UTF-8
       force: true
       enabled: true
-
----
-spring:
-  config:
-    activate:
-      on-profile: real
-  jpa:
-    database-platform: org.hibernate.dialect.MariaDBDialect
-    hibernate:
-      ddl-auto: none
-  session:
-    store-type: jdbc
+#
+#---
+#spring:
+#  config:
+#    activate:
+#      on-profile: real
+#  jpa:
+#    database-platform: org.hibernate.dialect.MariaDBDialect
+#    hibernate:
+#      ddl-auto: none
+#  session:
+#    store-type: jdbc
