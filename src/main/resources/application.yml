@@ -28,11 +28,16 @@ spring:
       - optional:file:/root/app/application-real-db.properties
       - optional:file:/root/app/application-oauth.properties
       - application-real.properties
-
   session:
     store-type: jdbc
     jdbc:
       initialize-schema: always
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.MariaDBDialect
+    hibernate:
+      ddl-auto: none
 logging:
   level:
     org.org.hibernate.sql: debug
