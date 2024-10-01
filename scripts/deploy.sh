@@ -6,6 +6,7 @@ REPOSITORY=/root/app/step2
 PROJECT_NAME=awsPractice
 
 echo "> Build 파일 복사"
+sudo chmod 777 $REPOSITORY/
 sudo chmod 777 $REPOSITORY
 sudo chmod 777 $REPOSITORY/zip
 sudo chmod 777 /root/app/application-oauth.properties /root/app/application-real-db.properties
