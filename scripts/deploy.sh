@@ -1,12 +1,14 @@
 #배포 스크립트
 
-!/bin/bash
+#!/bin/bash
 
 REPOSITORY=/root/app/step2
 PROJECT_NAME=awsPractice
 
 echo "> Build 파일 복사"
 chmod 777 $REPOSITORY/zip
+sudo chmod 777 /root/app/application-oauth.properties /root/app/application-real-db.properties
+
 cp $REPOSITORY/zip/*.jar $REPOSITORY/
 
 echo "> 현재 구동중인 애플리케이션 pid 확인"
