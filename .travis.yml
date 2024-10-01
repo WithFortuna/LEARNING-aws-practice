@@ -22,9 +22,17 @@ script: "./gradlew clean build"
 
 #CodeDeploy에게 jar파일 + a 전달
 before_deploy:
-  - zip -r awsPractice * #zip 파일 생성 (jar파일 단독을 CodeDeploy는 인식못함)
-  - mkdir -p deploy
-  - mv awsPractice.zip deploy/awsPractice.zip
+  - mkdir -p before-deploy  #디렉토리 생성: zip파일에 포함시킬 파일을 넣을 거임
+  - cp scripts/*.sh before-deploy/  #zip대상 파일
+  - cp appspec.yml before-deploy/   #zip대상 파일
+  - cp build/libs/*.jar before-deploy/  #zip대상 파일
+  - cd before-deploy && zip -r before-deploy *  #before-deploy폴더로 이동 후 파일 압축
+  - cd ../ && mkdir -p deploy
+  - mv before-deploy/before-deploy.zip deploy/awsPractice.zip
+  
+#  - zip -r awsPractice * #zip 파일 생성 (jar파일 단독을 CodeDeploy는 인식못함)
+#  - mkdir -p deploy
+#  - mv awsPractice.zip deploy/awsPractice.zip
 deploy:
   - provider: s3 #S3에게 jar전달
     access_key_id: $AWS_ACCESS_KEY      #s3연동을 위한 key
