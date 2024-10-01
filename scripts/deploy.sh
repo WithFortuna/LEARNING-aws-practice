@@ -37,4 +37,4 @@ chmod +x $JAR_NAME
 
 echo "> $JAR_NAME 실행"
 
-nohup java -jar -DSpring.config.location=classpath:/application.properties,classpath:/application-real.properties,classpath:/application-oauth.properties,classpath:/application-real-db.properties -DSpring.profiles.active=real $JAR_NAME > $REPOSITORY/nohup.out 2>&1 &
+nohup java -jar -DSpring.config.location=classpath:/application.properties,classpath:/application-real.properties,file:./application-oauth.properties,file:./application-real-db.properties -DSpring.profiles.active=real $JAR_NAME > $REPOSITORY/nohup.out 2>&1 &

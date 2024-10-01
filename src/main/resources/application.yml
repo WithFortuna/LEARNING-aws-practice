@@ -28,8 +28,8 @@ spring:
 #      - optional:file:/root/app/application-real-db.properties
 #      - optional:file:/root/app/application-oauth.properties
       - application-real.properties
-      - application-real-db.properties
-      - application-oauth.properties
+      - file:./application-real-db.properties
+      - file:./application-oauth.properties
   session:
     store-type: jdbc
     jdbc:
