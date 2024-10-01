@@ -34,7 +34,7 @@ deploy:
     acl: private
     local_dir: deploy   #해당 경로에 있는 파일만 S3에 전달
     wait-until-deployed: true
-
+    on: main
 
 
 
