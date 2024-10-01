@@ -1,6 +1,6 @@
 #배포 스크립트
 
-#!/bin/bash
+#!/bin/bashs
 
 REPOSITORY=/root/app/step2
 PROJECT_NAME=awsPractice
