@@ -8,13 +8,33 @@ branches: #해당 브랜치에 push되면 CI실행
     - main
 
 #Travis CI서버 홈
-cache:
+cache: #gradle과 maven으로 가져온 의존성 라이브러리들은 캐싱한다
   directories:
     - '$HOME/.m2/repository'
     - '$HOME/.gradle'
+
 before_install:
   - "chmod +x ./gradlew"
 script: "./gradlew clean build"
+
+
+#CodeDeploy에게 jar파일 + a 전달
+before_deploy:
+  - zip -r awsPractice * #zip 파일 생성 (jar파일 단독을 CodeDeploy는 인식못함)
+  - mkdir -p deploy
+  - mv awsPractice.zip deploy/awsPractice.zip
+  -
+deploy:
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    bucket: awspractice-build
+    region: ap-northeast-2
+    skip_cleanup: true
+    acl: private
+    local_dir: deploy   #해당 경로에 있는 파일만 S3에 전달
+    wait-until-deployed: true
+
 
 
 
