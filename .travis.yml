@@ -47,6 +47,7 @@ deploy:
     deployment_group: awsPractice-group
     region: ap-northeast-2
     wait-until-deployed: true
+    on: main
 
 
 
