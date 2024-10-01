@@ -11,7 +11,7 @@ sudo chmod 777 $REPOSITORY
 sudo chmod 777 $REPOSITORY/zip
 sudo chmod 777 /root/app/application-oauth.properties /root/app/application-real-db.properties
 
-cp $REPOSITORY/zip/*.jar $REPOSITORY/
+sudo cp $REPOSITORY/zip/*.jar $REPOSITORY/
 
 echo "> 현재 구동중인 애플리케이션 pid 확인"
 CURRENT_PID=$(pgrep -f1 awsPractice | grep jar | awk '{print $1}')
@@ -37,5 +37,4 @@ chmod +x $JAR_NAME
 
 echo "> $JAR_NAME 실행"
 
-nohup java -jar -DSpring.config.location=classpath:/application.properties, classpath:/application-real.properties,file:/root/app/application-oauth.properties,file:/root/app/application-real-db.properties \
--DSpring.profiles.active=real $JAR_NAME > $REPOSITORY/nohup.out 2>&1 &
+nohup java -jar -DSpring.config.location=classpath:/application.properties,classpath:/application-real.properties,classpath:/application-oauth.properties,classpath:/application-real-db.properties -DSpring.profiles.active=real $JAR_NAME > $REPOSITORY/nohup.out 2>&1 &
