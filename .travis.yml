@@ -40,7 +40,7 @@ deploy:
   - provider: codedeploy #codeDeploy에게 배포 요청
     access_key_id: $AWS_ACCESS_KEY
     secret_access_key: $AWS_SECRET_KEY
-    bucket: awspractice-build
+    bucket: awspractice-build   #codeDeploy와 S3 버킷 연결
     key: awsPractice.zip
     bundle_type: zip
     application: awsPractice  #CodeDeploy application이름
