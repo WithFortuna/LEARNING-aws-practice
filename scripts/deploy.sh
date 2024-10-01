@@ -6,6 +6,7 @@ REPOSITORY=/root/app/step2
 PROJECT_NAME=awsPractice
 
 echo "> Build 파일 복사"
+chmod 777 $REPOSITORY/zip
 cp $REPOSITORY/zip/*.jar $REPOSITORY/
 
 echo "> 현재 구동중인 애플리케이션 pid 확인"
