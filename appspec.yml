@@ -1,0 +1,7 @@
+#CodeDeploy 설정파일
+version: 0.0
+os: linux
+files:
+  - source:
+      destination: /root/app/step2/zip
+      overwrite: yes

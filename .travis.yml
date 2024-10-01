@@ -1,3 +1,5 @@
+#Travis설정파일
+
 language: java
 jdk:
   - openjdk17
@@ -25,8 +27,8 @@ before_deploy:
   - mv awsPractice.zip deploy/awsPractice.zip
   -
 deploy:
-  - provider: s3
-    access_key_id: $AWS_ACCESS_KEY
+  - provider: s3 #S3에게 jar전달
+    access_key_id: $AWS_ACCESS_KEY      #s3연동을 위한 key
     secret_access_key: $AWS_SECRET_KEY
     bucket: awspractice-build
     region: ap-northeast-2
@@ -35,6 +37,17 @@ deploy:
     local_dir: deploy   #해당 경로에 있는 파일만 S3에 전달
     wait-until-deployed: true
     on: main
+
+  - provider: codedeploy #codeDeploy에게 전달
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    bucket: awspractice-build
+    key: awsPractice.zip
+    bundle_type: zip
+    application: awsPractice  #CodeDeploy application이름
+    deployment_group: awsPractice-group
+    region: ap-northeast-2
+    wait-until-deployed: true
 
 
 
