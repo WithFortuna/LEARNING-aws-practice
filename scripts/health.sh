@@ -33,6 +33,6 @@ do
     echo "> 엔진 엑스에 연결하지않고 배포를 종료합니다"
     exit 1
   fi
-  echo "> Health chekc 연결실패. 재시도.."
+  echo "> Health check 연결실패. 재시도.."
   sleep 10
 done
