@@ -1,6 +1,6 @@
 #배포 스크립트
 
-#!/bin/bashs
+#!/bin/bashsea
 
 REPOSITORY=/root/app/step2
 PROJECT_NAME=awsPractice
@@ -9,6 +9,7 @@ echo "> Build 파일 복사"
 sudo chmod -R 777 $REPOSITORY/
 sudo chmod -R 777 $REPOSITORY
 sudo chmod -R 777 $REPOSITORY/zip
+sudo chmod 777 $REPOSITORY/zip/deploy.sh
 sudo chmod -R 777 /root/app/application-oauth.properties /root/app/application-real-db.properties
 
 sudo cp $REPOSITORY/zip/*.jar $REPOSITORY/
