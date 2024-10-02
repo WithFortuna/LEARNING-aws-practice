@@ -6,12 +6,24 @@ files:
 #    destination: /root/app/step2/zip/    #jar파일을 저장할 ec2 경로를 설정
     destination: /root/app/step3/zip/
     overwrite: yes
-permissions: #codeDeploy에서 넘겨준 파일의 권한수준: ec2-user
-  - object: /
+permissions: #codeDeploy에서 넘겨준 파일의 권한수준
+  - object: /root/app/step3/zip
     pattern: "**"
-    owner: ec2-user
-    group: ec2-user
-    mode: 755
+    owner: root
+    group: root
+    mode: 777
+  - object: /root/app/step3/zip/*.sh
+    pattern: "**"
+    owner: root
+    group: root
+    mode: 777
+#  - object: /
+#    pattern: "**"
+#    owner: ec2-user
+#    group: ec2-user
+#    mode: 755
+
+
 hooks:
 #  ApplicationStart: #CodeDeploy가 ApplicationStart단계일때, ec2-user권한으로 deploy.sh파일을 실행
 #    - location: ./deploy.sh
@@ -20,13 +32,13 @@ hooks:
   AfterInstall:
     - location: stop.sh #엔진엑스와 연결안된 jar종료
       timeout: 60
-      runas: ec2-user
+      runas: root #해당 스크립트의 실행자 권한
   ApplicationStart:
     - location: start.sh  #엔진엑스와 연결안되어있는 port로 새버전jar를 시작
       timeout: 60
-      runas: ec2-user
+      runas: root #해당 스크립트의 실행자 권한
   ValidateService:
     - location: health.sh #새 jar가 정상적으로 실행됐는지 확인
       timeout: 60
-      runas: ec2-user
+      runas: root #해당 스크립트의 실행자 권한
 
