@@ -28,7 +28,7 @@ spring:
 #      - optional:file:/root/app/application-real-db.properties
 #      - optional:file:/root/app/application-oauth.properties
       - application-real.properties
-      - file:./application-real-db.properties
+      - file:./application-real-db.properties #여기 엔만하면 상대경로로 적어라. .(현재위치는 프로젝트 디렉토리인 'awsPractice')
       - file:./application-oauth.properties
   session:
     store-type: jdbc
