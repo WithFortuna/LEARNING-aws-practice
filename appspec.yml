@@ -10,8 +10,9 @@ permissions: #codeDeploy에서 넘겨준 파일의 권한수준: ec2-user
     pattern: "**"
     owner: ec2-user
     group: ec2-user
+    mode: 755
 hooks:
   ApplicationStart: #CodeDeploy가 ApplicationStart단계일때, ec2-user권한으로 deploy.sh파일을 실행
-    - location: deploy.sh
+    - location: ./deploy.sh
       timeout: 60
       runas: ec2-user
