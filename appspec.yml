@@ -7,17 +7,7 @@ files:
     destination: /root/app/step3/zip/
     overwrite: yes
 permissions: #codeDeploy에서 넘겨준 파일의 권한수준
-  - object: /root/app/step3/zip
-    pattern: "**"
-    owner: root
-    group: root
-    mode: 777
-  - object: /root/app/step3/zip/*.sh
-    pattern: "**"
-    owner: root
-    group: root
-    mode: 777
-  - object: /root/app/step3
+  - object: /
     pattern: "**"
     owner: root
     group: root
