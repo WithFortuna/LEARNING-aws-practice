@@ -4,6 +4,9 @@ source ${ABSDIR}/profile.sh
 
 REPOSITORY=/root/app/step3
 PROJECT_NAME=awsPractice
+sudo chmod -R 777 $REPOSITORY/
+sudo chmod -R 777 $REPOSITORY
+sudo chmod -R 777 $REPOSITORY/zip
 
 echo "> Build 파일 복사"
 echo "> cp $REPOSITORY/zip/*.jar $REPOSITORY"
