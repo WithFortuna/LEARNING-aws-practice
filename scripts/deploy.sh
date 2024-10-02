@@ -2,7 +2,7 @@
 
 #!/bin/bashsea
 
-REPOSITORY=/root/app/step2
+REPOSITORY=/root/app/step3
 PROJECT_NAME=awsPractice
 
 echo "> Build 파일 복사"
