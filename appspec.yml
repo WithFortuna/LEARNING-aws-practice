@@ -17,6 +17,12 @@ permissions: #codeDeploy에서 넘겨준 파일의 권한수준
     owner: root
     group: root
     mode: 777
+  - object: /root/app/step3
+    pattern: "**"
+    owner: root
+    group: root
+    mode: 777
+
 #  - object: /
 #    pattern: "**"
 #    owner: ec2-user
