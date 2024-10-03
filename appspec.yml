@@ -12,6 +12,8 @@ permissions: #codeDeploy에서 넘겨준 파일의 권한수준
     owner: root
     group: root
     mode: 777
+  - object: "**.sh"
+    mode: 777
 
 #  - object: /
 #    pattern: "**"

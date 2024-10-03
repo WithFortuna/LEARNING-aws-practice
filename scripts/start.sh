@@ -24,6 +24,10 @@ sudo chmod 777 /root/app/step3/$JAR_NAME
 echo "> $JAR_NAME 실행"
 IDLE_PROFILE=$(find_idle_profile)
 
+echo "current directory: $(pwd)"
 echo "> $JAR_NAME 을 profile=$IDLE_PROFILE 로 실행합니다."
-sudo nohup java -jar -DSpring.config.location=classpath:/application.yml,classpath:/application-$IDLE_PROFILE.properties,file:./application-oauth.properties,file:./application-real-db.properties -DSpring.profiles.active=$IDLE_PROFILE $JAR_NAME > $REPOSITORY/nohup.out 2>&1 &
+sudo nohup java -jar \
+-DSpring.config.location=classpath:/application.yml,classpath:/application-$IDLE_PROFILE.properties,file:./application-oauth.properties,file:./application-real-db.properties \
+-DSpring.profiles.active=$IDLE_PROFILE \
+$REPOSITORY/zip/$JAR_NAME > $REPOSITORY/nohup.out 2>&1 &
 
