@@ -1,3 +1,10 @@
-사용한 기술스택:
-                  기존에 사용해봄: SpringBoot, JPA, H2DB
-                  새로 사용해봄: Mustache(템플릿엔진), OAuth2(스프링 시큐리티),EC2, rds(mariaDB)
+## 사용한 기술스택
+
+- **프로젝트**:  
+  Spring Boot, JPA, H2DB, Mustache(템플릿 엔진), OAuth2 (Spring Security)
+
+- **클라우드 서버**:  
+  AWS EC2, rds(MariaDB)
+   
+- **CI/CD**:  
+  Travis CI, AWS S3, AWS CodeDeploy
