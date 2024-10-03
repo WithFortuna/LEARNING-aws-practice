@@ -19,6 +19,7 @@ JAR_NAME=$(ls -tr $REPOSITORY/ | grep jar | grep -v "plain.jar" | tail -n 1)
 echo "> JAR Name: $JAR_NAME"
 echo "> $JAR_NAME 에 실행권한 추가"
 sudo chmod 777 /root/app/step3/zip/$JAR_NAME
+sudo chmod 777 /root/app/step3/$JAR_NAME
 
 echo "> $JAR_NAME 실행"
 IDLE_PROFILE=$(find_idle_profile)
